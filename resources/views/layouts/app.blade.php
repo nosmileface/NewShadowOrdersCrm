@@ -32,5 +32,7 @@
 <script src="{{ asset('vendor/js/menu.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
 
+@stack('scripts')
+
 </body>
 </html>
