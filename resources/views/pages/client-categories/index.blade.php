@@ -30,12 +30,13 @@
                             </button>
                         </h5>
                         <div class="table-responsive text-nowrap">
-                            <table class="table">
+                            <table class="table" style="text-align: center">
                                 <thead>
                                 <tr class="text-nowrap">
                                     <th>#</th>
                                     <th>Название</th>
                                     <th>Тип</th>
+                                    <th>Кол-во клиентов</th>
                                     <th>Действия</th>
                                 </tr>
                                 </thead>
@@ -43,14 +44,15 @@
                                 @forelse($clientCategories as $clientCategory)
                                     <tr>
                                         <td>{{ $clientCategory->id }}</td>
-                                        <td>{{ $clientCategory->name }}</td>
+                                        <td><a href="{{ route('client-categories.clients.index', $clientCategory->id) }}">{{ $clientCategory->name }}</a></td>
                                         <td>{{ $clientCategory->type }}</td>
+                                        <td><a href="{{ route('client-categories.clients.index', $clientCategory->id) }}">{{ $clientCategory->clients_count }}</a></td>
                                         <td>
                                             <button type="button"
-                                                    class="btn btn-icon btn-text-secondary rounded-pill waves-effect"
+                                                    class="btn btn-icon rounded-pill waves-effect"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#editModal{{ $clientCategory->id }}">
-                                                <i class="tf-icon bx bx-edit-alt"></i>
+                                                <i class="tf-icon bx bx-edit-alt text-secondary"></i>
                                             </button>
 
                                             <form action="{{ route('client-categories.destroy', $clientCategory->id) }}"
@@ -59,15 +61,15 @@
                                                   onsubmit="return confirm('Удалить категорию «{{ $clientCategory->name }}»?')">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-icon btn-text-danger rounded-pill waves-effect">
-                                                    <i class="tf-icon bx bx-trash"></i>
+                                                <button type="submit" class="btn btn-icon rounded-pill waves-effect">
+                                                    <i class="tf-icon bx bx-trash text-danger"></i>
                                                 </button>
                                             </form>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="4" class="text-center">Категории не найдены</td>
+                                        <td colspan="5" class="text-center">Категории не найдены</td>
                                     </tr>
                                 @endforelse
                                 </tbody>

@@ -13,6 +13,11 @@ class FetchShadowDomainService
         return $this->fetch(endpoint: config('shadow-domain.shadow_domain_client_categories_url'));
     }
 
+    public function fetchClients(): array
+    {
+        return $this->fetch(endpoint: config('shadow-domain.shadow_domain_clients_url'));
+    }
+
     private function fetch(string $endpoint): array
     {
         $response = Http::timeout(self::FETCH_TIMEOUT)

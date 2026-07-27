@@ -13,7 +13,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withSchedule(function (Schedule $schedule): void {
-        $schedule->command('app:sync-shadow-domain-client-category')->daily()->withoutOverlapping();
+        $schedule->command('app:sync-shadow-domain-client-categories')->daily()->withoutOverlapping();
+
+        $schedule->command('app:sync-shadow-domain-clients')->daily()->withoutOverlapping();
     })
     ->withMiddleware(function (Middleware $middleware): void {
         //

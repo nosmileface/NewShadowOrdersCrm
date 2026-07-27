@@ -129,7 +129,7 @@ return [
 
         'sync' => [
             'driver' => 'daily',
-            'path' => storage_path('sync/sync.log')
+            'path' => storage_path('logs/sync/sync.log')
         ]
 
     ],

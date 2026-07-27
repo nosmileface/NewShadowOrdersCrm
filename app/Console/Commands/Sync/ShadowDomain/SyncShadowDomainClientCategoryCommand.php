@@ -8,7 +8,7 @@ use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 
-#[Signature('app:sync-shadow-domain-client-category')]
+#[Signature('app:sync-shadow-domain-client-categories')]
 #[Description('Синхронизация категорий клиента')]
 class SyncShadowDomainClientCategoryCommand extends Command
 {
