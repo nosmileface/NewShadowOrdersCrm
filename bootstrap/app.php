@@ -16,6 +16,8 @@ return Application::configure(basePath: dirname(__DIR__))
         $schedule->command('app:sync-shadow-domain-client-categories')->daily()->withoutOverlapping();
 
         $schedule->command('app:sync-shadow-domain-clients')->daily()->withoutOverlapping();
+
+        $schedule->command('app:sync-analityc-database-client-status')->daily()->withoutOverlapping();
     })
     ->withMiddleware(function (Middleware $middleware): void {
         //

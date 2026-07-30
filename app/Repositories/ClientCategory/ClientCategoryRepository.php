@@ -8,7 +8,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class ClientCategoryRepository
 {
-    private const array RELATIONS = ['clients'];
+    private const array RELATIONS = ['clients', 'statusCategories'];
 
     public function __construct(private ClientCategory $clientCategory){}
 

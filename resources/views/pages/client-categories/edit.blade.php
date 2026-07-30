@@ -14,13 +14,13 @@
                     <div class="row">
                         <div class="col mb-3">
                             <label class="form-label">Название</label>
-                            <input type="text" name="name" class="form-control" value="{{ old('name', $clientCategory->name) }}" required>
+                            <input type="text" name="name" class="form-control" value="{{ old('name', $clientCategory->name) }}" placeholder="Введите название" required>
                         </div>
                     </div>
                     <div class="row g-2">
                         <div class="col mb-0">
                             <label class="form-label">Тип</label>
-                            <input type="text" name="type" class="form-control" value="{{ old('type', $clientCategory->type) }}" required>
+                            <input type="text" name="type" class="form-control" value="{{ old('type', $clientCategory->type) }}" placeholder="Введите тип" required>
                         </div>
                     </div>
                 </div>

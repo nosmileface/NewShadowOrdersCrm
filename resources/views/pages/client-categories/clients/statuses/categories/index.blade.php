@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Клиенты — ' . $clientCategory->name)
+@section('title', 'Категории статусов — ' . $clientCategory->name)
 
 @section('content')
 
@@ -35,7 +35,7 @@
 
                     <div class="card">
                         <h5 class="card-header d-flex justify-content-between align-items-center">
-                            <span>Клиенты категории: {{ $clientCategory->name }}</span>
+                            <span>Категории статусов: {{ $clientCategory->name }}</span>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
                                 <i class="tf-icon bx bx-plus"></i> Добавить
                             </button>
@@ -46,57 +46,43 @@
                                 <tr class="text-nowrap">
                                     <th>#</th>
                                     <th>Название</th>
-                                    <th>Код</th>
+                                    <th>Тип</th>
                                     <th>Активность</th>
-                                    <th>Статусы</th>
-                                    <th>Адрес</th>
-                                    <th>Телефон</th>
-                                    <th>Юр. лицо</th>
-                                    <th>ИНН</th>
-                                    <th>ОГРН</th>
-                                    <th>КПП</th>
                                     <th>Действия</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @forelse($clients as $client)
+                                @forelse($clientStatusCategories as $clientStatusCategory)
                                     <tr>
-                                        <td>{{ $client->id }}</td>
-                                        <td>{{ $client->name }}</td>
-                                        <td>{{ $client->code }}</td>
+                                        <td>{{ $clientStatusCategory->id }}</td>
+                                        <td>{{ $clientStatusCategory->name }}</td>
+                                        <td>{{ $clientStatusCategory->type }}</td>
                                         <td>
-                                            <form action="{{ route('client-categories.clients.toggle', [$clientCategory->id, $client->id]) }}"
+                                            <form action="{{ route('client-categories.status-categories.toggle', [$clientCategory->id, $clientStatusCategory->id]) }}"
                                                   method="POST"
                                                   class="d-inline">
                                                 @csrf
                                                 @method('PUT')
                                                 <button type="submit"
                                                         class="btn btn-icon rounded-pill waves-effect"
-                                                        title="{{ $client->is_active ? 'Активен' : 'Отключён' }}">
-                                                    <i class="tf-icon bx {{ $client->is_active ? 'bx-toggle-right text-success' : 'bx-toggle-left text-danger' }} bx-md"></i>
+                                                        title="{{ $clientStatusCategory->is_active ? 'Активна' : 'Отключена' }}">
+                                                    <i class="tf-icon bx {{ $clientStatusCategory->is_active ? 'bx-toggle-right text-success' : 'bx-toggle-left text-danger' }} bx-md"></i>
                                                 </button>
                                             </form>
                                         </td>
-                                        <td><a href="{{ route('client-categories.clients.client-statuses.index', [$clientCategory->id, $client->id]) }}">{{ $client->statuses_count }}</a></td>
-                                        <td>{{ $client->address }}</td>
-                                        <td>{{ $client->phone }}</td>
-                                        <td>{{ $client->legal_entity }}</td>
-                                        <td>{{ $client->inn }}</td>
-                                        <td>{{ $client->ogrn }}</td>
-                                        <td>{{ $client->kpp }}</td>
                                         <td>
                                             <div class="d-flex justify-content-center gap-1">
                                                 <button type="button"
                                                         class="btn btn-icon rounded-pill waves-effect"
                                                         data-bs-toggle="modal"
-                                                        data-bs-target="#editModal{{ $client->id }}">
+                                                        data-bs-target="#editModal{{ $clientStatusCategory->id }}">
                                                     <i class="tf-icon bx bx-edit-alt text-secondary"></i>
                                                 </button>
 
-                                                <form action="{{ route('client-categories.clients.destroy', [$clientCategory->id, $client->id]) }}"
+                                                <form action="{{ route('client-categories.status-categories.destroy', [$clientCategory->id, $clientStatusCategory->id]) }}"
                                                       method="POST"
                                                       class="d-inline"
-                                                      onsubmit="return confirm('Удалить клиента «{{ $client->name }}»?')">
+                                                      onsubmit="return confirm('Удалить категорию статуса «{{ $clientStatusCategory->name }}»?')">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-icon rounded-pill waves-effect">
@@ -108,14 +94,14 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="12" class="text-center">Клиенты не найдены</td>
+                                        <td colspan="5" class="text-center">Категории статусов не найдены</td>
                                     </tr>
                                 @endforelse
                                 </tbody>
                             </table>
                         </div>
 
-                        {{ $clients->links('components.pagination.pagination') }}
+                        {{ $clientStatusCategories->links('components.pagination.pagination') }}
 
                     </div>
                 </div>
@@ -128,10 +114,10 @@
 
     <div class="layout-overlay layout-menu-toggle"></div>
 
-    @include('pages.client-categories.clients.create', ['clientCategory' => $clientCategory])
+    @include('pages.client-categories.clients.statuses.categories.create', ['clientCategory' => $clientCategory])
 
-    @foreach ($clients as $client)
-        @include('pages.client-categories.clients.edit', ['clientCategory' => $clientCategory, 'client' => $client])
+    @foreach ($clientStatusCategories as $clientStatusCategory)
+        @include('pages.client-categories.clients.statuses.categories.edit', ['clientCategory' => $clientCategory, 'clientStatusCategory' => $clientStatusCategory])
     @endforeach
 
 @endsection

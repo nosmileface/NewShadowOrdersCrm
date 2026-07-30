@@ -58,6 +58,6 @@ class ClientController extends Controller
 
         return redirect()
             ->route('client-categories.clients.index', ['clientCategory' => $clientCategory])
-            ->with('success', 'Статус активности клиента успешно обновлен.');
+            ->with('success', 'Активность клиента успешно обновлен.');
     }
 }

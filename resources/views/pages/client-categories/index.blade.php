@@ -36,7 +36,8 @@
                                     <th>#</th>
                                     <th>Название</th>
                                     <th>Тип</th>
-                                    <th>Кол-во клиентов</th>
+                                    <th>Клиенты</th>
+                                    <th>Категории статусов</th>
                                     <th>Действия</th>
                                 </tr>
                                 </thead>
@@ -47,6 +48,7 @@
                                         <td><a href="{{ route('client-categories.clients.index', $clientCategory->id) }}">{{ $clientCategory->name }}</a></td>
                                         <td>{{ $clientCategory->type }}</td>
                                         <td><a href="{{ route('client-categories.clients.index', $clientCategory->id) }}">{{ $clientCategory->clients_count }}</a></td>
+                                        <td><a href="{{ route('client-categories.status-categories.index', $clientCategory->id) }}">{{ $clientCategory->status_categories_count }}</a></td>
                                         <td>
                                             <button type="button"
                                                     class="btn btn-icon rounded-pill waves-effect"
@@ -69,7 +71,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="5" class="text-center">Категории не найдены</td>
+                                        <td colspan="6" class="text-center">Категории не найдены</td>
                                     </tr>
                                 @endforelse
                                 </tbody>

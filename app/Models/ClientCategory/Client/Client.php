@@ -2,10 +2,12 @@
 
 namespace App\Models\ClientCategory\Client;
 
+use App\Models\ClientCategory\Client\Status\ClientStatus;
 use App\Models\ClientCategory\ClientCategory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 #[Fillable([
     'category_id',
@@ -26,5 +28,10 @@ class Client extends Model
     public function category(): BelongsTo
     {
         return $this->belongsTo(ClientCategory::class);
+    }
+
+    public function statuses(): HasMany
+    {
+        return $this->hasMany(ClientStatus::class);
     }
 }

@@ -99,6 +99,22 @@ return [
             'sslmode' => env('DB_SSLMODE', 'prefer'),
         ],
 
+        'pgsql_analytic' => [
+            'driver' => 'pgsql',
+            'url' => env('PGSQL_ANALYTIC_DB_URL'),
+            'host' => env('PGSQL_ANALYTIC_DB_HOST', '127.0.0.1'),
+            'port' => env('PGSQL_ANALYTIC_DB_PORT', '5432'),
+            'database' => env('PGSQL_ANALYTIC_DB_DATABASE', 'laravel'),
+            'table' => env('PGSQL_ANALYTIC_DB_TABLE', ''),
+            'username' => env('PGSQL_ANALYTIC_DB_USERNAME', 'root'),
+            'password' => env('PGSQL_ANALYTIC_DB_PASSWORD', ''),
+            'charset' => env('PGSQL_ANALYTIC_DB_CHARSET', 'utf8'),
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'search_path' => 'public',
+            'sslmode' => env('DB_SSLMODE', 'prefer'),
+        ],
+
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'url' => env('DB_URL'),
